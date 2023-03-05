@@ -1,5 +1,5 @@
 from django.db import models
-
+from accounts_app.models import Registrar
 
 def upload_to(instance, filename):
     return 'images/{filename}'.format(filename=filename)
@@ -16,3 +16,6 @@ class Application(models.Model):
         upload_to=upload_to, blank=False, null=False)
     remarks = models.TextField(blank=True)
     date_uploaded = models.DateTimeField(auto_now_add=True)
+    registrar = models.ForeignKey(Registrar, on_delete=models.CASCADE, related_name='applications')
+
+
